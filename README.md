@@ -18,7 +18,7 @@ type Handler interface {
 }
 ```
 
-## eg 
+## example 
 
 ```go
 package mut_test
