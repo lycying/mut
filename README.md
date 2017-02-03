@@ -97,3 +97,15 @@ func TestServer(t *testing.T) {
 
 }
 ```
+
+```
+type Handler interface {
+	// OnConnect : you may want add some UserData here
+	OnConnect(c *Conn)
+	// OnMessage only available while async mode
+	OnMessage(c *Conn, p Packet)
+
+	OnClose(c *Conn)
+	OnError(c *Conn, err error)
+}
+```
