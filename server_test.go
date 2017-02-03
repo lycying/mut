@@ -2,8 +2,8 @@ package mut_test
 
 import (
 	"fmt"
-	"github.com/lycying/pitydb/tcp/mut"
-	"github.com/lycying/pitydb/tcp/mut/codec/typelen"
+	"github.com/lycying/mut"
+	"github.com/lycying/mut/codec/typelen"
 	"sync"
 	"testing"
 	"time"

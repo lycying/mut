@@ -1,7 +1,7 @@
 package linebased
 
 import (
-	"github.com/lycying/pitydb/tcp/mut"
+	"github.com/lycying/mut"
 )
 
 type Packet struct {

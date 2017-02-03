@@ -1,6 +1,6 @@
 package mut
 
-import "github.com/lycying/pitydb/log"
+import "github.com/lycying/log"
 
 var logger *log.Logger
 

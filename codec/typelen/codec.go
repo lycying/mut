@@ -5,7 +5,7 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
-	"github.com/lycying/pitydb/tcp/mut"
+	"github.com/lycying/mut"
 )
 
 const MaxPacketBytes = 32 * 1024

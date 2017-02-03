@@ -2,8 +2,8 @@ package mut_test
 
 import (
 	"bytes"
-	"github.com/lycying/pitydb/log"
-	"github.com/lycying/pitydb/tcp/mut"
+	"github.com/lycying/log"
+	"github.com/lycying/mut"
 	"testing"
 )
 
