@@ -1,4 +1,4 @@
-![mut](https://raw.githubusercontent.com/lycying/psd/master/mut.png)
+<img src="https://raw.githubusercontent.com/lycying/psd/master/mut.png" width="300px" />
 
 
 # mut
