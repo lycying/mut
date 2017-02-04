@@ -104,7 +104,11 @@ func (c *Conn) ReadRaw(buf []byte) (int, error) {
 	return n, err
 }
 
-func (c *Conn) ReadBytes(delim byte) (line []byte, err error) {
+func (c *Conn) ReadString(delim byte) (string, error) {
+	return c.br.ReadString(delim)
+}
+
+func (c *Conn) ReadBytes(delim byte) ([]byte, error) {
 	return c.br.ReadBytes(delim)
 }
 
@@ -174,6 +178,14 @@ func (c *Conn) WriteAndGetWithTimeout(p Packet, timeout time.Duration) (Packet, 
 // ReadLoop enter a loop , It decodes bytes use the config's Codec
 // If any error occurred , an Error event will be emitted
 func (c *Conn) ReadLoop() {
+	defer func() {
+		if err := recover(); err != nil {
+			logger.Error("mut# safe close , when read %+v",err)
+			if !c.IsClosed(){
+				c.Close()
+			}
+		}
+	}()
 	if !c.cfg.AsyncMode {
 		panic("only async mode can start this method")
 	}
@@ -190,6 +202,14 @@ func (c *Conn) ReadLoop() {
 // WriteLoop enter a loop , It fetch data from the write channel
 // If any error occurred , an Error event will be emitted
 func (c *Conn) WriteLoop() {
+	defer func() {
+		if err := recover(); err != nil {
+			logger.Error("mut# safe close , when write %+v",err)
+			if !c.IsClosed(){
+				c.Close()
+			}
+		}
+	}()
 	if !c.cfg.AsyncMode {
 		panic("only async mode can start this method")
 	}
