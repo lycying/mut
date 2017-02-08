@@ -8,6 +8,7 @@ import (
 	"net"
 	"sync/atomic"
 	"time"
+	"runtime/debug"
 )
 
 type Conn struct {
@@ -180,7 +181,7 @@ func (c *Conn) WriteAndGetWithTimeout(p Packet, timeout time.Duration) (Packet, 
 func (c *Conn) ReadLoop() {
 	defer func() {
 		if err := recover(); err != nil {
-			logger.Error("mut# safe close , when read %+v",err)
+			logger.Error("mut# safe close , when read %+v %v",err,string(debug.Stack()))
 			if !c.IsClosed(){
 				c.Close()
 			}
@@ -204,7 +205,7 @@ func (c *Conn) ReadLoop() {
 func (c *Conn) WriteLoop() {
 	defer func() {
 		if err := recover(); err != nil {
-			logger.Error("mut# safe close , when write %+v",err)
+			logger.Error("mut# safe close , when write %+v %v",err,string(debug.Stack()))
 			if !c.IsClosed(){
 				c.Close()
 			}
